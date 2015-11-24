@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   has_many :goals
 
+  has_many :user_comments
+
   attr_reader :password
 
   after_initialize :ensure_session_token
@@ -29,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   private
-  
+
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)
   end

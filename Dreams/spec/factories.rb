@@ -1,4 +1,10 @@
-FactoryGirl.define do
+FactoryGirl.define do  factory :goal_comment do
+    
+  end
+  factory :user_comment do
+    
+  end
+
 
   factory :goal do
     title "My Goal Title"

@@ -6,9 +6,42 @@
 <ul>
   <% @user.goals.each do |goal| %>
     <li>
-      <%= link_to goal.title, goal_url(goal) %>
+    <% if current_user.id == @user.id && goal.is_private %>  
+      <%= link_to goal.title, goal_url(goal)  %>
     </li>
   <% end %>
 </ul>
+
+<h2>Comments</h2>
+
+<ul>
+  <% @user.user_comments.each do |comment| %>
+    <li>
+      <%= comment.body %>
+      <%= button_to "Delete Comment", user_comment_url(comment), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>Add Comment</h2>
+
+<form action="<%= user_comments_url %>" method="post">
+  <input
+    type="hidden"
+    name="user_comment[user_id]"
+    value="<%= @user.id %>">
+
+  <label>
+    Comment:
+  <textarea
+    name="user_comment[body]"
+    rows="8"
+    cols="40"></textarea>
+  </label>
+
+  <input type="submit" value="Add Comment">
+
+</form>
+
 
 <%= link_to "New Goal", new_goal_url %>

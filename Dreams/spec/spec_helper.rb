@@ -52,6 +52,10 @@ def sign_up_as_claire
   sign_up("claire")
 end
 
+def sign_up_as_kareem
+  sign_up("kareem")
+end
+
 def sign_in(username)
   visit '/session/new'
   fill_in "username", with: username
