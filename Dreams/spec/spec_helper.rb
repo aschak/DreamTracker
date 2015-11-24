@@ -74,3 +74,22 @@ def make_goal(title = nil, description = nil, is_private = false, completed = fa
   choose("goal_private_#{is_private}")
   click_button 'Create Goal!'
 end
+
+def edit_goal(title = nil, description = nil)
+  title ||= "New Title"
+  description ||= "New description"
+
+  visit "/goals/1/edit"
+    fill_in 'Title', with: title
+    fill_in 'Description', with: description
+  click_button 'Edit Goal!'
+end
+
+
+def make_comment(body = nil)
+  body ||= "Great comment"
+
+  visit "/users/1"
+    fill_in 'Comment', with: body
+  click_button 'Add Comment'
+end

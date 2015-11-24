@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124000310) do
+ActiveRecord::Schema.define(version: 20151124010706) do
 
   create_table "goal_comments", force: :cascade do |t|
     t.text     "body",       null: false
@@ -27,11 +27,11 @@ ActiveRecord::Schema.define(version: 20151124000310) do
   create_table "goals", force: :cascade do |t|
     t.string   "title",                       null: false
     t.text     "description",                 null: false
-    t.boolean  "private",     default: false
     t.integer  "user_id",                     null: false
     t.boolean  "completed",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.boolean  "is_private",  default: false, null: false
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"

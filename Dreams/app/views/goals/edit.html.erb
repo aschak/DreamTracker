@@ -1,0 +1,90 @@
+<h1>Edit Goal</h1>
+
+<form action="<%= goal_url(@goal) %>" method="post">
+
+  <input
+    type="hidden"
+    name="_method"
+    value="patch">
+
+  <%= auth_token %>
+  <label>
+    Title
+    <input
+      type="text"
+      name="goal[title]"
+      value="<%= @goal.title %>">
+  </label>
+
+  <br>
+  <br>
+  <br>
+
+  <label>
+    Description
+    <br>
+    <textarea
+      name="goal[description]"
+      rows="8"
+      cols="70"> <%= @goal.description %> </textarea>
+  </label>
+
+  <br>
+  <br>
+  <br>
+
+  <label>
+    Is this goal private?
+    <br>
+    <br>
+
+    <input type="radio"
+           name="goal[is_private]"
+           id="goal_private_true"
+           value="<%= true %>"
+           <%= @goal.is_private ? "checked" : "" %> >
+    <label for="goal_private_true"> Yes</label>
+
+    <br>
+
+    <input type="radio"
+           name="goal[is_private]"
+           id="goal_private_false"
+           value="<%= false %>"
+           <%= @goal.is_private ? "" : "checked" %>>
+    <label for="goal_private_false"> No (others can see it!)</label>
+  </label>
+
+  <br>
+  <br>
+  <br>
+
+  <label>
+    Is this goal complete?
+    <br>
+    <br>
+    <input type="radio"
+           name="goal[completed]"
+           id="goal_completed_true"
+           value="<%= true %>"
+           <%= @goal.completed ? "checked" : "" %>>
+    <label for="goal_completed_true"> Yes (really?)</label>
+
+    <br>
+
+    <input type="radio"
+           name="goal[completed]"
+           id="goal_completed_false"
+           value="<%= false %>"
+           <%= @goal.completed ? "" : "checked" %>>
+    <label for="goal_completed_false"> No </label>
+  </label>
+
+
+  <br>
+  <br>
+  <br>
+
+  <input type="submit" value="Edit Goal!">
+
+</form>

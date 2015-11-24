@@ -6,8 +6,11 @@
 <ul>
   <% @user.goals.each do |goal| %>
     <li>
-    <% if current_user.id == @user.id && goal.is_private %>  
+    <% if current_user.id == @user.id && goal.is_private %>
       <%= link_to goal.title, goal_url(goal)  %>
+    <% elsif goal.is_private == false %>
+      <%= link_to goal.title, goal_url(goal) %>
+    <% end %>
     </li>
   <% end %>
 </ul>
@@ -23,25 +26,37 @@
   <% end %>
 </ul>
 
+<br>
+<br>
+
 <h2>Add Comment</h2>
 
 <form action="<%= user_comments_url %>" method="post">
+  <%= auth_token %>
+  
   <input
     type="hidden"
     name="user_comment[user_id]"
     value="<%= @user.id %>">
 
   <label>
-    Comment:
+    Comment
+    <br>
   <textarea
     name="user_comment[body]"
     rows="8"
     cols="40"></textarea>
   </label>
 
+  <br>
+  <br>
+
+
   <input type="submit" value="Add Comment">
 
 </form>
 
+<br>
+<br>
 
 <%= link_to "New Goal", new_goal_url %>
