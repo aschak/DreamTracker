@@ -30,7 +30,6 @@ feature "the signup process" do
 end
 
 feature "logging in" do
-
   before(:each) do
     FactoryGirl.create(:user)
     visit "/session/new"
